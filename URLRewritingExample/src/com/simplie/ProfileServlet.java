@@ -11,45 +11,39 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 /**
- * Servlet implementation class SendCookies
+ * Servlet implementation class ReadCookies
  */
-@WebServlet("/SendCookies")
-public class SendCookies extends HttpServlet {
+public class ProfileServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public SendCookies() {
+    public ProfileServlet() {
         super();
-        // TODO Auto-generated constructor stub
     }
 
 	/**
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		PrintWriter out = response.getWriter();
-		
-		/*
-		 * out.print("Sending Cookies to Browser/ Client");
-		 * 
-		 * 
-		 * Cookie c1 = new Cookie("username", "javeed"); Cookie c2 = new
-		 * Cookie("password", "tiger");
-		 * 
-		 * response.addCookie(c1); response.addCookie(c2);
-		 */
-			
-		
+	PrintWriter out =	response.getWriter();
+	
+	String name = 	request.getParameter("name");
+	String profile =  request.getParameter("profile");
+	
+	if (null != name && null != profile) {
+		   out.println("Welcome " + name);
+		   out.println("Your are a " + profile + " customer");
+		}else {
+			out.println(" Unknown User");
+		}
 	}
 
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
 		doGet(request, response);
 	}
 

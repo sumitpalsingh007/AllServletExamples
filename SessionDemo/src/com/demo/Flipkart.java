@@ -23,45 +23,26 @@ public class Flipkart extends HttpServlet {
      */
     public Flipkart() {
         super();
-        // TODO Auto-generated constructor stub
     }
 
 	/**
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-	PrintWriter out =	response.getWriter();
+	 PrintWriter out =	response.getWriter();
 	
-	String   pname = request.getParameter("pname");
+	 String pname = request.getParameter("pname");
+	 String amount  =  request.getParameter("amount");
 	
-	String  amount  =  request.getParameter("amount");
-	
-	
-	out.print("<h1  style='color:red'>  Thanks for shopping "+pname +" </h1> ");
-	out.print("Redirecting to Payment Gateway...");
+	 out.print("<h1  style='color:red'>  Thanks for shopping "+pname +" </h1> ");
+	 out.print("Redirecting to Payment Gateway...");
 	
 	
-		HttpSession  session  = request.getSession();
-		
-		session.setAttribute("amount", amount);
-	
-	
-		 RequestDispatcher rd =	request.getRequestDispatcher("/PaymentServlet");
-	
-		 	rd.include(request, response);
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
+	 HttpSession  session  = request.getSession();
+	 session.setAttribute("amount", amount);
+
+	 RequestDispatcher rd =	request.getRequestDispatcher("/PaymentServlet");
+	 rd.include(request, response);	
 	}
 
 	/**

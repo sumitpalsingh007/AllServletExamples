@@ -9,18 +9,18 @@ import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 /**
  * Servlet implementation class ReadCookies
  */
-@WebServlet("/ReadCookies")
-public class ReadCookies extends HttpServlet {
+public class ProfileServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public ReadCookies() {
+    public ProfileServlet() {
         super();
     }
 
@@ -28,19 +28,20 @@ public class ReadCookies extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-	PrintWriter out =	response.getWriter();
-	
-		out.print("Reading cookies from client");
+		PrintWriter out =	response.getWriter();
 		
+		HttpSession session = request.getSession();
 		
-		Cookie[] cookies =	request.getCookies();
+		String name =(String)	session.getAttribute("name");
+		String profile = (String)session.getAttribute("profile");
 		
-			for (Cookie cookie : cookies) {
-				
-					out.print(cookie.getName() +"  "+cookie.getValue());
-				
-			}
-	
+			
+		if (null != name && null != profile) {
+		   out.println("Welcome " + name);
+		   out.println("Your are a " + profile + " customer");
+		}else {
+			out.println(" Unknown User");
+		}
 	}
 
 	/**

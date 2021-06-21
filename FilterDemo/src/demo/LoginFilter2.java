@@ -12,14 +12,14 @@ import javax.servlet.annotation.WebFilter;
 /**
  * Servlet Filter implementation class LoginFilter
  */
-public class LoginFilter implements Filter {
+public class LoginFilter2 implements Filter {
 	
 	private FilterConfig fc = null;
 
     /**
      * Default constructor. 
      */
-    public LoginFilter() {
+    public LoginFilter2() {
     }
 
 	/**
@@ -34,8 +34,8 @@ public class LoginFilter implements Filter {
 	public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain) throws IOException, ServletException {
 
 		String userid =  request.getParameter("userid");
-		if(userid != null) {
-		    chain.doFilter(request, response);
+		if(fc.getInitParameter("userid").equals(userid)) {
+			chain.doFilter(request, response);	
 		}
 	}
 

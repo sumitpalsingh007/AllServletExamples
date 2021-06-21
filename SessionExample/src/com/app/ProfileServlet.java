@@ -22,51 +22,29 @@ public class ProfileServlet extends HttpServlet {
      */
     public ProfileServlet() {
         super();
-        // TODO Auto-generated constructor stub
     }
 
 	/**
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
 		PrintWriter out = response.getWriter();
-		
-		request.getRequestDispatcher("menu.html").include(request, response);
-		
+		response.setContentType("text/html");
 		HttpSession session = request.getSession(false);
-		
 		if(session !=null) {
-			
-				
 			String uname =(String)	session.getAttribute("uname");
-			
-			out.print("Hello "+uname+" Welcome to Profile Page");
-			
-			
-		}
-		
-		
-		else {
-			
-			
+			out.println("Hello "+uname+". Welcome to Profile Page");
+			request.getRequestDispatcher("menu.html").include(request, response);
+		} else {
 			out.print("Please Login first");
-			
-			
 			request.getRequestDispatcher("login.html").include(request, response);
-		
-			
-				
-			
-		}
-		
+		}		
 	}
 
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
 		doGet(request, response);
 	}
 

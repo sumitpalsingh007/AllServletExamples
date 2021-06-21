@@ -22,25 +22,25 @@ public class LogoutServlet extends HttpServlet {
      */
     public LogoutServlet() {
         super();
-        // TODO Auto-generated constructor stub
     }
 
 	/**
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-	PrintWriter out =	response.getWriter();
 	
-	request.getRequestDispatcher("menu.html").include(request, response);
+		PrintWriter out =	response.getWriter();
+	
+		
 	
 		HttpSession session = request.getSession();
 	
-			session.invalidate();
-			
-			out.print("<br> You are successfully logged out ");
+		session.invalidate();
 		
-	
+		out.print("<br> You are successfully logged out ");
+		response.setContentType("text/html");
+		request.getRequestDispatcher("login.html").include(request, response);
+		
 	}
 
 	/**
