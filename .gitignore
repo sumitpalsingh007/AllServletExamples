@@ -1,0 +1,10 @@
+/bin/
+*.
+*.class
+*.prefs
+*.component
+*.
+*.
+*.name
+*.container
+*.xml
